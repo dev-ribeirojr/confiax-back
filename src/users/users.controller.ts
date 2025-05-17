@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   HttpCode,
+  Query,
 } from '@nestjs/common';
 import {
   GetUsersHandler,
@@ -16,6 +17,7 @@ import {
   DeleteUserByIdHandler,
 } from 'src/users/handler';
 import { CreateUserDto, UpdateUserDto } from 'src/users/dto';
+import { PaginationDto } from 'src/common/dto';
 
 @Controller('users')
 export class UsersController {
@@ -33,8 +35,8 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
-    return this.getUsersHandler.execute();
+  findAll(@Query() pagination: PaginationDto) {
+    return this.getUsersHandler.execute(pagination);
   }
 
   @Get(':id')

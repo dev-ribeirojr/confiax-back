@@ -5,7 +5,7 @@
 @adminRoleId = 5f7f6f19-93e4-4628-a8c4-f5325d85e698
 
 ### get users
-GET {{baseUrl}}
+GET {{baseUrl}}?page=2&limit=1
 
 ### get user
 GET {{baseUrl}}/{{userId}}
