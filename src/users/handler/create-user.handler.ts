@@ -1,3 +1,5 @@
+import * as bcrypt from 'bcrypt';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { Role } from 'src/roles/entities/role.entity';
@@ -31,7 +33,13 @@ class CreateUsersHandler {
       }
     }
 
-    const user = this.repository.create({ ...props, roles });
+    const hashedPassword = await bcrypt.hash(props.password, 8);
+
+    const user = this.repository.create({
+      ...props,
+      password: hashedPassword,
+      roles,
+    });
 
     return this.repository.save(user);
   }
