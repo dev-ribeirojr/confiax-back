@@ -8,7 +8,7 @@ import {
   DeleteUserByIdHandler,
   GetUserByIdHandler,
   UpdateUserHandler,
-} from 'src/users/handle';
+} from 'src/users/handler';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],

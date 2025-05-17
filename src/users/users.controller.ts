@@ -14,7 +14,7 @@ import {
   GetUserByIdHandler,
   UpdateUserHandler,
   DeleteUserByIdHandler,
-} from 'src/users/handle';
+} from 'src/users/handler';
 import { CreateUserDto, UpdateUserDto } from 'src/users/dto';
 
 @Controller('users')
