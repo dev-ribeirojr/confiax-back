@@ -7,49 +7,49 @@ import {
   Param,
   Delete,
   HttpCode,
-  NotFoundException,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import {
+  GetUsersHandler,
+  CreateUsersHandler,
+  GetUserByIdHandler,
+  UpdateUserHandler,
+  DeleteUserByIdHandler,
+} from 'src/users/handle';
+import { CreateUserDto, UpdateUserDto } from 'src/users/dto';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly createUsersHandler: CreateUsersHandler,
+    private readonly getUsersHandler: GetUsersHandler,
+    private readonly getUserByIdHandler: GetUserByIdHandler,
+    private readonly updateUserHandler: UpdateUserHandler,
+    private readonly deleteUserByIdHandler: DeleteUserByIdHandler,
+  ) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    return this.createUsersHandler.execute(createUserDto);
   }
 
   @Get()
   findAll() {
-    return this.usersService.findAll();
+    return this.getUsersHandler.execute();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const user = await this.usersService.findOne(id);
-
-    if (!user) throw new NotFoundException();
-
-    return user;
+  findOne(@Param('id') id: string) {
+    return this.getUserByIdHandler.execute(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    const user = await this.usersService.update(id, updateUserDto);
-
-    if (!user) throw new NotFoundException();
-
-    return user;
+    return this.updateUserHandler.execute(id, updateUserDto);
   }
 
   @Delete(':id')
   @HttpCode(204)
   async remove(@Param('id') id: string) {
-    const user = await this.usersService.remove(id);
-
-    if (!user) throw new NotFoundException();
+    return this.deleteUserByIdHandler.execute(id);
   }
 }

@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000/users
-@userId = b24d8ebb-6248-420a-a809-2f1b25b65678
-@deleteUserId = b24d8ebb-6248-420a-a809-2f1b25b65678
+@userId = c92a3262-098e-4682-99f5-616dda1076e8
+@deleteUserId = 92143cae-67e5-4b17-9490-7683746715cd
 
 ### get users
 GET {{baseUrl}}
@@ -14,7 +14,7 @@ Content-Type: application/json
 
 {
   "name": "Sandra Alves",
-  "email": "emai@email.com",
+  "email": "email@email.com",
   "password": "password"
 }
 
@@ -23,6 +23,7 @@ PATCH  {{baseUrl}}/{{userId}}
 Content-Type: application/json
 
 {
+  "name": "Sandra Evangelista",
   "email": "emaills@email.com",
   "password": "pablo123"
 }
