@@ -1,0 +1,26 @@
+@baseUrl = http://localhost:3000/roles
+
+@roleId = 5f7f6f19-93e4-4628-a8c4-f5325d85e698
+
+### get roles
+GET {{baseUrl}}
+
+### get role
+GET {{baseUrl}}/{{roleId}}
+
+### create role
+
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "role": "Convidado(a)"
+}
+
+### update user
+PATCH  {{baseUrl}}/{{roleId}}
+Content-Type: application/json
+
+{
+  "role": "Administrador(a)"
+}
