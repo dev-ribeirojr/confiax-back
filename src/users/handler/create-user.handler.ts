@@ -6,7 +6,6 @@ import { Role } from 'src/roles/entities/role.entity';
 import { User } from 'src/users/entities/user.entity';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
-const DEFAULT_ID_ROLE = '7ea5dcd7-872b-4b85-a267-aa8072640481';
 class CreateUsersHandler {
   constructor(
     @InjectRepository(User)
@@ -25,7 +24,7 @@ class CreateUsersHandler {
       });
     } else {
       const defaultRole = await this.roleRepository.findOneBy({
-        id: DEFAULT_ID_ROLE,
+        id: process.env.DEFAULT_ROLE_ID,
       });
 
       if (defaultRole) {

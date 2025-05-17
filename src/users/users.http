@@ -1,6 +1,8 @@
 @baseUrl = http://localhost:3000/users
 @userId = c92a3262-098e-4682-99f5-616dda1076e8
-@deleteUserId = 92143cae-67e5-4b17-9490-7683746715cd
+@deleteUserId = cc9ffe9b-ccd6-4670-b717-ebccc617b628
+
+@adminRoleId = 5f7f6f19-93e4-4628-a8c4-f5325d85e698
 
 ### get users
 GET {{baseUrl}}
@@ -13,9 +15,10 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "name": "Sandra Alves",
-  "email": "email@email.com",
-  "password": "password"
+  "name": "Pablo allves",
+  "email": "pablo@email.com",
+  "password": "123456",
+  "roles": ["{{adminRoleId}}"]
 }
 
 ### update user

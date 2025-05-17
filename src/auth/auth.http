@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:3000/auth
+@email = pablo@email.com
+@password = 123456
+
+###  sign in user
+POST {{baseUrl}}/sign-in
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
