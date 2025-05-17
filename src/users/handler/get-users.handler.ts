@@ -9,7 +9,9 @@ class GetUsersHandler {
   ) {}
 
   execute() {
-    return this.repository.find();
+    return this.repository.find({
+      relations: ['roles'],
+    });
   }
 }
 
