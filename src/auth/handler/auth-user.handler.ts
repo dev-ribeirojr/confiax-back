@@ -27,7 +27,7 @@ export class AuthHandler {
       relations: ['roles'],
     });
 
-    if (!user) throw new NotFoundException();
+    if (!user) throw new NotFoundException('user_not_found');
 
     const isValidPassword = await bcrypt.compare(password, user.password);
 

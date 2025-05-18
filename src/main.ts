@@ -10,6 +10,10 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+  app.enableCors({
+    origin: process.env.URL_ACCESS_APP,
+    credentials: true,
+  });
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   await app.listen(process.env.PORT ?? 3000);
 }
