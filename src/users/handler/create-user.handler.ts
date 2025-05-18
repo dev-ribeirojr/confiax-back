@@ -1,10 +1,14 @@
 import * as bcrypt from 'bcrypt';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { In, QueryFailedError, Repository } from 'typeorm';
 import { Role } from 'src/roles/entities/role.entity';
 import { User } from 'src/users/entities/user.entity';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import {
+  ConflictException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 
 class CreateUsersHandler {
   constructor(
@@ -40,7 +44,18 @@ class CreateUsersHandler {
       roles,
     });
 
-    return this.repository.save(user);
+    try {
+      return await this.repository.save(user);
+    } catch (error) {
+      if (
+        error instanceof QueryFailedError &&
+        (error as any).code === 'ER_DUP_ENTRY'
+      ) {
+        throw new ConflictException('user_already_exist');
+      }
+
+      throw new InternalServerErrorException('internal_server_error');
+    }
   }
 }
 
