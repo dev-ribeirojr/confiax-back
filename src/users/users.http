@@ -1,28 +1,34 @@
 @baseUrl = http://localhost:3000/users
 @userId = c92a3262-098e-4682-99f5-616dda1076e8
-@deleteUserId = cc9ffe9b-ccd6-4670-b717-ebccc617b628
+@deleteUserId = 9fe550d7-18ac-49fe-a09d-a57bf1cc4947
 
 @adminRoleId = 5f7f6f19-93e4-4628-a8c4-f5325d85e698
 
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MzU1YzE4My1hMDY2LTQ4MDQtOWE3Yi02NjU0MjE2MTVhNWIiLCJpYXQiOjE3NDc1MjY2OTYsImV4cCI6MTc0NzYxMzA5Nn0.1CTAUCVHWTMGUx3dwvGbQKsUt60vrYXNsCplFyDIiq0
+
 ### get users
 GET {{baseUrl}}?page=2&limit=1
+Authorization: Bearer {{authToken}}
 
 ### get user
 GET {{baseUrl}}/{{userId}}
+Authorization: Bearer {{authToken}}
 
 ### create user
 POST {{baseUrl}}
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
   "name": "Pablo allves",
-  "email": "pablo@email.com",
+  "email": "pabloconv@email.com",
   "password": "123456",
   "roles": ["{{adminRoleId}}"]
 }
 
 ### update user
 PATCH  {{baseUrl}}/{{userId}}
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -33,4 +39,5 @@ Content-Type: application/json
 
 ### delete user
 DELETE  {{baseUrl}}/{{deleteUserId}}
+Authorization: Bearer {{authToken}}
 

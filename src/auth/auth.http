@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3000/auth
-@email = pablo@email.com
+@email = pabloconv@email.com
 @password = 123456
 
 ###  sign in user

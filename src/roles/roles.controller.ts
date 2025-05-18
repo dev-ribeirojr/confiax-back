@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  UseGuards,
+} from '@nestjs/common';
 import {
   CreateRolesHandler,
   GetRoleByIdHandler,
@@ -6,8 +14,10 @@ import {
   UpdateRoleByIdHandler,
 } from 'src/roles/handler';
 import { CreateRoleDto, UpdateRoleDto } from 'src/roles/dto';
+import { AdminGuard, JwtAuthGuard } from 'src/auth/guards';
 
 @Controller('roles')
+@UseGuards(JwtAuthGuard, AdminGuard)
 export class RolesController {
   constructor(
     private readonly createRoleHandler: CreateRolesHandler,

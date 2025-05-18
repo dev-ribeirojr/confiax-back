@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
 import { User } from 'src/users/entities/user.entity';
 import { Role } from 'src/roles/entities/role.entity';
 
 import { AuthHandler } from 'src/auth/handler';
 import { AuthController } from 'src/auth/auth.controller';
-import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtAuthGuard, AdminGuard } from 'src/auth/guards';
+import { JwtStrategy } from 'src/auth/strategies';
 
 @Module({
   imports: [
@@ -21,7 +24,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
     }),
   ],
-  providers: [AuthHandler],
+  providers: [AuthHandler, JwtStrategy, JwtAuthGuard, AdminGuard],
   controllers: [AuthController],
 })
 export class AuthModule {}

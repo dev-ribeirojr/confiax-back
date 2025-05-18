@@ -8,6 +8,7 @@ import {
   Delete,
   HttpCode,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
   GetUsersHandler,
@@ -18,8 +19,10 @@ import {
 } from 'src/users/handler';
 import { CreateUserDto, UpdateUserDto } from 'src/users/dto';
 import { PaginationDto } from 'src/common/dto';
+import { AdminGuard, JwtAuthGuard } from 'src/auth/guards';
 
 @Controller('users')
+@UseGuards(JwtAuthGuard, AdminGuard)
 export class UsersController {
   constructor(
     private readonly createUsersHandler: CreateUsersHandler,
