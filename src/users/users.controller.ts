@@ -38,8 +38,11 @@ export class UsersController {
   }
 
   @Get()
-  findAll(@Query() pagination: PaginationDto) {
-    return this.getUsersHandler.execute(pagination);
+  findAll(
+    @Query() pagination: PaginationDto,
+    @CurrentUser() user: { userId: string },
+  ) {
+    return this.getUsersHandler.execute(pagination, user.userId);
   }
 
   @Get('me')
