@@ -1,6 +1,8 @@
+import { In, Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+
 import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Role } from 'src/roles/entities/role.entity';
 import { UpdateUserDto } from 'src/users/dto';
@@ -20,7 +22,7 @@ class UpdateUserHandler {
       relations: ['roles'],
     });
 
-    if (!user) throw new NotFoundException();
+    if (!user) throw new NotFoundException('user_not_found');
 
     let updateRoles: Role[] = [];
 
@@ -32,6 +34,10 @@ class UpdateUserHandler {
       updateRoles = roles;
     } else {
       delete updateUserDto.roles;
+    }
+
+    if (updateUserDto.password) {
+      updateUserDto.password = await bcrypt.hash(updateUserDto.password, 8);
     }
 
     this.repository.merge(user, {
