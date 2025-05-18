@@ -18,6 +18,9 @@ class GetUsersHandler {
 
     const [users, total] = await this.repository.findAndCount({
       relations: ['roles'],
+      order: {
+        createdAt: 'desc',
+      },
       take: limit,
       skip: skip,
     });

@@ -10,7 +10,10 @@ class GetUserByIdHandler {
   ) {}
 
   async execute(id: string) {
-    const user = await this.repository.findOneBy({ id });
+    const user = await this.repository.findOne({
+      where: { id },
+      relations: ['roles'],
+    });
 
     if (!user) throw new NotFoundException();
 

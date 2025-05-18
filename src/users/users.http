@@ -1,17 +1,21 @@
 @baseUrl = http://localhost:3000/users
-@userId = b5b6eacb-4ef2-44fd-8ef0-385276f98ee2
+@userId = 7355c183-a066-4804-9a7b-665421615a5b
 @deleteUserId = 9fe550d7-18ac-49fe-a09d-a57bf1cc4947
 
 @adminRoleId = 5f7f6f19-93e4-4628-a8c4-f5325d85e698
 
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MzU1YzE4My1hMDY2LTQ4MDQtOWE3Yi02NjU0MjE2MTVhNWIiLCJpYXQiOjE3NDc1MjY2OTYsImV4cCI6MTc0NzYxMzA5Nn0.1CTAUCVHWTMGUx3dwvGbQKsUt60vrYXNsCplFyDIiq0
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMDM4ODA2ZC1lNjE2LTQwM2QtYThjOC0zOTFhMDRhZmMwMDAiLCJpYXQiOjE3NDc1OTgxNTQsImV4cCI6MTc0NzY4NDU1NH0.OWMjz6N2CNxt8tt0zxm38MQ4kFdBczLlumGraL7qlYE
 
 ### get users
-GET {{baseUrl}}
+GET {{baseUrl}}?page=1&limit=4
 Authorization: Bearer {{authToken}}
 
 ### get user
 GET {{baseUrl}}/{{userId}}
+Authorization: Bearer {{authToken}}
+
+### get user
+GET {{baseUrl}}/me
 Authorization: Bearer {{authToken}}
 
 ### create user

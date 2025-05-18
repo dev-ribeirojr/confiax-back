@@ -20,7 +20,7 @@ import {
 import { CreateUserDto, UpdateUserDto } from 'src/users/dto';
 import { PaginationDto } from 'src/common/dto';
 import { AdminGuard, JwtAuthGuard } from 'src/auth/guards';
-
+import { CurrentUser } from 'src/users/decorator';
 @Controller('users')
 @UseGuards(JwtAuthGuard, AdminGuard)
 export class UsersController {
@@ -42,19 +42,24 @@ export class UsersController {
     return this.getUsersHandler.execute(pagination);
   }
 
+  @Get('me')
+  getMe(@CurrentUser() user: { userId: string }) {
+    return this.getUserByIdHandler.execute(user.userId);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.getUserByIdHandler.execute(id);
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.updateUserHandler.execute(id, updateUserDto);
   }
 
   @Delete(':id')
   @HttpCode(204)
-  async remove(@Param('id') id: string) {
+  remove(@Param('id') id: string) {
     return this.deleteUserByIdHandler.execute(id);
   }
 }
