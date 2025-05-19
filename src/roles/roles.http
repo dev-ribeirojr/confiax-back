@@ -1,8 +1,8 @@
 @baseUrl = http://localhost:3000/roles
 
-@roleId = 5f7f6f19-93e4-4628-a8c4-f5325d85e698
+@roleId = 
 
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MzU1YzE4My1hMDY2LTQ4MDQtOWE3Yi02NjU0MjE2MTVhNWIiLCJpYXQiOjE3NDc1MjY2OTYsImV4cCI6MTc0NzYxMzA5Nn0.1CTAUCVHWTMGUx3dwvGbQKsUt60vrYXNsCplFyDIiq0
+@authToken = 
 
 ### get roles
 GET {{baseUrl}}
@@ -19,10 +19,10 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "role": "Convidado(a)"
+  "role": "Admin"
 }
 
-### update user
+### update role
 PATCH  {{baseUrl}}/{{roleId}}
 Authorization: Bearer {{authToken}}
 Content-Type: application/json

@@ -1,10 +1,10 @@
 @baseUrl = http://localhost:3000/users
-@userId = 7355c183-a066-4804-9a7b-665421615a5b
-@deleteUserId = 9fe550d7-18ac-49fe-a09d-a57bf1cc4947
+@userId = 
+@deleteUserId = 
 
-@adminRoleId = 5f7f6f19-93e4-4628-a8c4-f5325d85e698
+@adminRoleId = 
 
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMDM4ODA2ZC1lNjE2LTQwM2QtYThjOC0zOTFhMDRhZmMwMDAiLCJpYXQiOjE3NDc1OTgxNTQsImV4cCI6MTc0NzY4NDU1NH0.OWMjz6N2CNxt8tt0zxm38MQ4kFdBczLlumGraL7qlYE
+@authToken = 
 
 ### get users
 GET {{baseUrl}}?page=1&limit=4
@@ -24,9 +24,9 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "name": "Pablo allves",
-  "email": "pablo@email.com",
-  "password": "123456"
+  "name": "name",
+  "email": "email@email",
+  "password": "password"
 }
 
 ### update user
@@ -35,9 +35,8 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "name": "Sandra Evangelista",
-  "email": "email@email.com",
-  "password": "123456"
+  "name": "name",
+  "password": "password"
 }
 
 ### delete user
