@@ -25,16 +25,16 @@ npm install
 
 3 - Crie um arquivo .env na raiz do projeto e adicione as variáveis abaixo:
 ```
-DB_HOST = 
-DB_PORT = 
-DB_USERNAME =
-DB_PASSWORD = 
-DB_NAME = 
-URL_ACCESS_APP = 
-PORT =
-ADMIN_ROLE_ID =
-JWT_SECRET =
-DEFAULT_ROLE_ID = 
+DB_HOST = // host da conexão com o banco
+DB_PORT = // porta da conexão com o banco
+DB_USERNAME = // username da conexão com o banco
+DB_PASSWORD = // password para acessar o banco
+DB_NAME = // name do banco
+URL_ACCESS_APP = // urls ou url que irá conectar com o projeto
+PORT = // porta onde deseja rodar o backend (opcional) por padrão está rodando na porta 3000
+ADMIN_ROLE_ID = // id de uma role de administrador
+JWT_SECRET = // jwt secrete key
+DEFAULT_ROLE_ID = // id de uma role que irá ser default para o registro de usuários quando não enviar uma role por padrão utilize uma role de convidado
 ```
 
 ⚠️ As variáveis ADMIN_ROLE_ID e DEFAULT_ROLE_ID são essenciais para o sistema de permissões.
